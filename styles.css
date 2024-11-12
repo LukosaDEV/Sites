@@ -1,0 +1,225 @@
+/* body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #ffecd2, #fcb69f);
+    overflow-y: auto;
+    text-align: center;
+    user-select: none;
+}
+
+header h1 {
+    color: #ff6347;
+    font-size: 2.5rem;
+    margin-top: 1.5rem;
+    text-shadow: 2px 2px #ffadad;
+    animation: bounce 1s infinite alternate;
+}
+
+header p {
+    font-size: 3rem;
+    color: #555;
+}
+
+.goals-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 2rem;
+}
+
+.goals-header {
+    font-size: 1.8rem;
+    color: #ff2600;
+    margin: 2rem 0 1rem;
+    text-shadow: 1px 1px #ffadad;
+}
+
+.goals {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+    justify-items: center;
+}
+
+.goal {
+    width: 100%;
+    max-width: 300px;
+}
+
+.goal img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.goal p {
+    color: #555;
+    font-size: 2rem;
+    margin-top: 0.5rem;
+}
+
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    opacity: 0.9;
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-10px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+        padding: 0 1rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    .goals-header {
+        font-size: 1.5rem;
+    }
+
+    .goals {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .goal {
+        max-width: 250px;
+    }
+} */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #ffecd2, #fcb69f);
+    overflow-y: auto;
+    text-align: center;
+    user-select: none;
+}
+
+/* Other styles remain the same until .goals-container */
+
+.goals-header {
+    font-size: 1.8rem;
+    color: #ff2600;
+    margin: 2rem 0 1rem;
+    text-shadow: 1px 1px #ffadad;
+}
+
+.goals-container {
+    width: 90%;
+    max-width: 800px;
+    /* Reduced for better stacking effect */
+    margin: 0 auto;
+    padding-bottom: 2rem;
+    position: relative;
+}
+
+.goals {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    /* Boşluğu azalttım */
+    padding: 1rem;
+    perspective: 2000px;
+    /* Perspektifi artırdım */
+    transform-style: preserve-3d;
+}
+
+.goal {
+    width: 100%;
+    max-width: 600px;
+    opacity: 0;
+    transform: translateZ(-200px) rotateX(30deg);
+    /* Daha derin bir başlangıç pozisyonu */
+    transition: all 0.6s cubic-bezier(0.3, 0, 0.2, 1);
+    /* Geçişi hızlandırdım */
+    position: relative;
+    margin-bottom: 0.5rem;
+    /* Elemanlar arası mesafeyi azalttım */
+}
+
+.goal.visible {
+    opacity: 1;
+    transform: translateZ(0) rotateX(0);
+}
+
+.goal img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    /* Gölgeyi güçlendirdim */
+    transition: transform 0.3s ease;
+    will-change: transform;
+    /* Performans optimizasyonu */
+}
+
+.goal p {
+    color: #555;
+    font-size: 2rem;
+    margin-top: 0.5rem;
+    /* Yazı mesafesini azalttım */
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+}
+
+
+@media screen and (max-width: 768px) {
+    .goals-container {
+        width: 95%;
+    }
+
+    .goal {
+        max-width: 100%;
+    }
+
+    .goal img {
+        height: 250px;
+    }
+
+    .goal p {
+        font-size: 1.5rem;
+    }
+}
